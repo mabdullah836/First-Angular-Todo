@@ -1,0 +1,25 @@
+<div class="flex justify-center">
+    <div class="w-[500px] h-auto flex flex-col justify-center mt-[100px]">
+        <div class="p-2 flex  gap-2 items-center">
+            <input type="text" value="{{value}}" (input)="handleAddTodo($event)" placeholder="Add Todo"
+                class="bg-cyan-600 text-white w-[390px] rounded-md p-2 font-medium " />
+            <button (click)="handleDisplayTodo()" class="bg-cyan-600 text-white p-2 text-[16px] rounded-md">Add Todo</button>
+        </div>
+        <div class="mt-1.5 p-2 ">
+            <ul class="mt-1">
+                @for(todo of todos;track todo){
+                    <li *ngIf="!todo.edit" class="flex justify-between items-center p-2 mb-2 bg-gray-200 rounded-md">{{todo.todo}}
+                        <div class="flex gap-1">
+                            <button (click)="handleEditTodo(todo.id)" class="p-2 font-medium bg-red-700 text-white  rounded-md">Edit</button>
+                            <button  (click)="handleDeleteTodo(todo.id)" class="p-2 bg-black font-medium text-white  rounded-md">Delete</button>
+                        </div>
+                    </li>
+                    <div *ngIf="todo.edit" class="flex gap-2">
+                        <input placeholder="Update Todo" class="bg-cyan-600 text-white w-[390px] rounded-md p-2 font-medium mb-2" (input)="handleUpdateValue($event)" type="text">
+                        <button class="bg-cyan-600 text-white p-2 text-[16px] rounded-md mb-1 w-[86px]" (click)="handleUpdateTodo(todo.id)">Update</button>
+                    </div>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
